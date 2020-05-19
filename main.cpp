@@ -14,8 +14,7 @@ int main(){
 	string* paragens_nomes = leparagens("G:/Users/Rodrigo Silva/Desktop//paragens.txt");
 	int* n_bilhetes = gera_lista_bilhetes();
 	int n_paragens= rand() % 5 + 6;
-	char letras[26] = { 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
-	int numeros[10] = { 0,1,2,3,4,5,6,7,8,9 };
+	char matricula[36] = {'0','1','2','3','4','5','6','7','8','9', 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
 	nodo_passageiro* lista_de_espera = new nodo_passageiro;
 	lista_de_espera = gera_lista_de_espera(primeiro_nomes, ultimo_nomes, n_bilhetes);
 	char opcao;
