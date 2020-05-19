@@ -29,8 +29,7 @@ nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nom
         int x = rand() % 96;
         valor.primeiro_nome = primeiro_nomes[y];
         valor.ultimo_nome = ultimo_nomes[x];
-        int j = sizeof(n_bilhetes);
-        int n = rand() % 10000;
+        int n = rand() % 9999;
         while (n_bilhetes[n] == -1) {
             int n = rand() % 9999;
         }
@@ -38,6 +37,16 @@ nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nom
         n_bilhetes[n] = -1;
         resultado=insereInicio(resultado, valor);
         i = i + 1;
+    }
+    return resultado;
+}
+
+int* gera_lista_bilhetes() {
+    int* resultado = new int[10000];
+    int j = 0;
+    while (j < 10000) {
+        resultado[j] = j;
+        j = j + 1;
     }
     return resultado;
 }
