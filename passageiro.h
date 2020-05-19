@@ -15,4 +15,5 @@ struct nodo_passageiro {
 nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nomes, int* n_bilhetes);
 nodo_passageiro* insereInicio(nodo_passageiro* inicio, passageiro valor);
 nodo_passageiro* criaNo(passageiro valor);
+int* gera_lista_bilhetes();
 #endif
