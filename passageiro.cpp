@@ -51,9 +51,9 @@ int* gera_lista_bilhetes() {
     return resultado;
 }
 
-string* gera_matricula(char* caracteres) {
+string gera_matricula(char* caracteres) {
     int i = 0;
-    string* matricula = new string[];
+    string matricula;
     while (i < 4) {
         int x = rand() & 35;
         matricula = matricula + caracteres[x];
@@ -62,8 +62,27 @@ string* gera_matricula(char* caracteres) {
     return  matricula;
 }
 
-autocarro* gera_autocarro(nodo_passageiro* lista_de_espera) {
-    autocarro* resultado = new autocarro;
-
+autocarro gera_autocarro(nodo_passageiro* lista_de_espera, int& n_passageiros_lista_espera,char* caracteres) {
+    autocarro resultado;
+    resultado.matricula = gera_matricula(caracteres);
+    int x = rand() & 5 + 5;
+    resultado.capacidade = x;
+    resultado.quantidade = x;
+    n_passageiros_lista_espera = n_passageiros_lista_espera - x;
+    nodo_passageiro* temp = lista_de_espera;
+    int i = 0;
+    while (i < n_passageiros_lista_espera) {
+        temp = temp->seguinte;
+        i = i + 1;
+    }
+    resultado.utilizadores = temp;
+    nodo_passageiro* temp2 = lista_de_espera;
+    int j = 0;
+    while (j < (n_passageiros_lista_espera - 1)) {
+        temp2 = temp2->seguinte;
+        j = j + 1;
+    }
+    temp2->seguinte = NULL;
+    lista_de_espera = temp2;
     return resultado;
 }
