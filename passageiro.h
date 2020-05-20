@@ -25,5 +25,6 @@ nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nom
 nodo_passageiro* insereInicio(nodo_passageiro* inicio, passageiro valor);
 nodo_passageiro* criaNo(passageiro valor);
 int* gera_lista_bilhetes();
-string* gera_matricula(char* caracteres);
+string gera_matricula(char* caracteres);
+autocarro gera_autocarro(nodo_passageiro* lista_de_espera, int& n_passageiros_lista_espera, char* caracteres);
 #endif
