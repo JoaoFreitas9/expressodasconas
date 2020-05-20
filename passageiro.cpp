@@ -50,3 +50,20 @@ int* gera_lista_bilhetes() {
     }
     return resultado;
 }
+
+string* gera_matricula(char* caracteres) {
+    int i = 0;
+    string* matricula = new string[];
+    while (i < 4) {
+        int x = rand() & 35;
+        matricula = matricula + caracteres[x];
+        i = i + 1;
+    }
+    return  matricula;
+}
+
+autocarro* gera_autocarro(nodo_passageiro* lista_de_espera) {
+    autocarro* resultado = new autocarro;
+
+    return resultado;
+}
