@@ -61,6 +61,15 @@ string gera_matricula(char* caracteres) {
     }
     return  matricula;
 }
+nodo_passageiro* removefim(nodo_passageiro* head) {
+    nodo_passageiro* temp = head;
+    while (temp->seguinte->seguinte != NULL) {
+        temp = temp->seguinte;
+    }
+    delete temp->seguinte;
+    temp->seguinte = NULL;
+    return head;
+}
 
 autocarro gera_autocarro(nodo_passageiro* lista_de_espera, int& n_passageiros_lista_espera,char* caracteres) {
     autocarro resultado;
@@ -78,11 +87,9 @@ autocarro gera_autocarro(nodo_passageiro* lista_de_espera, int& n_passageiros_li
     resultado.utilizadores = temp;
     nodo_passageiro* temp2 = lista_de_espera;
     int j = 0;
-    while (j < (n_passageiros_lista_espera - 1)) {
-        temp2 = temp2->seguinte;
-        j = j + 1;
+    while (j < x) {
+        lista_de_espera = removefim(lista_de_espera);
     }
-    temp2->seguinte = NULL;
-    lista_de_espera = temp2;
     return resultado;
 }
+
