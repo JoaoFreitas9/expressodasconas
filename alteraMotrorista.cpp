@@ -1,12 +1,11 @@
-void alteraMotorista(matricula* newMat) {
-string condutor
+void alteraMotorista(autocarro* aut) {
+string matricula
 cout << "Qual a matricula do autocarro?";
-cin >> newMat;
-while (a.seguinte = !NULL) {
-	if (newMat == matricula) {
-		cout << "Qual o nome do motorista" << ;
-		cin >> condutor;
-		}
-		
-	}
+cin >> matricula
+while (aut.seguinte != NULL) {
+    if (matricula == aut.matricula) {
+        cout << "Qual o nome do motorista" << ;
+        cin >> aut.condutor;
+        }
+    }
 }
