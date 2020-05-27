@@ -24,9 +24,20 @@ nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nom
     nodo_passageiro* resultado = new nodo_passageiro;
     int i = 0;
     passageiro valor;
-    while (i < 30) {
-        int y = rand() % 43;
-        int x = rand() % 96;
+    int y = rand() % 43;
+    int x = rand() % 96;
+    valor.primeiro_nome = primeiro_nomes[y];
+    valor.ultimo_nome = ultimo_nomes[x];
+    int n = rand() % 9999;
+    while (n_bilhetes[n] == -1) {
+        int n = rand() % 9999;
+    }
+    valor.n_bilhete = n_bilhetes[n];
+    n_bilhetes[n] = -1;
+    resultado = criaNo(valor);
+    while (i < 29) {
+        y = rand() % 43;
+        x = rand() % 96;
         valor.primeiro_nome = primeiro_nomes[y];
         valor.ultimo_nome = ultimo_nomes[x];
         int n = rand() % 9999;
