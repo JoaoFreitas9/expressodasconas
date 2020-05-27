@@ -100,6 +100,7 @@ autocarro gera_autocarro(nodo_passageiro* lista_de_espera, int& n_passageiros_li
     int j = 0;
     while (j < x) {
         lista_de_espera = removefim(lista_de_espera);
+        j = j + 1;
     }
     return resultado;
 }
