@@ -2,6 +2,7 @@
 #include "arvore.h"
 #include <string>
 #include <iomanip>
+#include <algorithm>
 using namespace std;
 
 node* novo_no(int valor)
@@ -34,14 +35,11 @@ void imprimeArvore(node* raiz, int nivel) {
 		return;
 	}
 	imprimeArvore(raiz->direita, nivel + 1);
-
-	for (int i = 0; i < nivel; i++)
+	for (int i = 0; i < nivel; i++) {
 		cout << "\t";
-
+	}
 	cout << raiz->numero << endl;
-
 	imprimeArvore(raiz->esquerda, nivel + 1);
-
 }
 
 node* pesquisar_no(node* raiz, int valor) 
