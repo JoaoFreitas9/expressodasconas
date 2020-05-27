@@ -30,7 +30,7 @@ nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nom
     valor.ultimo_nome = ultimo_nomes[x];
     int n = rand() % 9999;
     while (n_bilhetes[n] == -1) {
-        int n = rand() % 9999;
+        n = rand() % 9999;
     }
     valor.n_bilhete = n_bilhetes[n];
     n_bilhetes[n] = -1;
@@ -40,9 +40,9 @@ nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nom
         x = rand() % 96;
         valor.primeiro_nome = primeiro_nomes[y];
         valor.ultimo_nome = ultimo_nomes[x];
-        int n = rand() % 9999;
+        n = rand() % 9999;
         while (n_bilhetes[n] == -1) {
-            int n = rand() % 9999;
+            n = rand() % 9999;
         }
         valor.n_bilhete = n_bilhetes[n];
         n_bilhetes[n] = -1;
@@ -103,4 +103,3 @@ autocarro gera_autocarro(nodo_passageiro* lista_de_espera, int& n_passageiros_li
     }
     return resultado;
 }
-
