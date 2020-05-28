@@ -33,7 +33,7 @@ string* leultimonome(string caminho) {
 string* leparagens(string caminho) {
 	ifstream file(caminho);
 	string line = "";
-	string* resultado = new string[54];
+	string* resultado = new string[53];
 	int i = 0;
 	if (file.is_open()) {
 		while (getline(file, line)) {
