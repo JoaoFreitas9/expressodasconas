@@ -1,20 +1,33 @@
+using namespace std;
+#include <iostream>
+#include <locale>
 #include <stdlib.h>
 #include <time.h>
 #include"escritaeleitura.h"
 #include"passageiro.h"
+#include"paragens.h"
 
 int main(){
 	srand(time(NULL));
 	locale::global(locale(""));
-	string* primeiro_nomes = leprimeironome("G:/Users/Rodrigo Silva/Desktop//primeiro_nome.txt");
-	string* ultimo_nomes = leultimonome("G:/Users/Rodrigo Silva/Desktop//ultimo_nome.txt");
-	string* paragens_nomes = leparagens("G:/Users/Rodrigo Silva/Desktop//paragens.txt");
+	string* primeiro_nomes = leprimeironome("primeiro_nome.txt");
+	string* ultimo_nomes = leultimonome("ultimo_nome.txt");
+	string* paragens_nomes = leparagens("paragens.txt");
 	int* n_bilhetes = gera_lista_bilhetes();
 	int n_paragens= rand() % 5 + 6;
 	char matricula[36] = {'0','1','2','3','4','5','6','7','8','9', 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
-	nodo_passageiro* lista_de_espera = new nodo_passageiro;
+	nodo_passageiro* lista_de_espera = NULL;
 	int n_passageiros_lista_espera = 30;
 	lista_de_espera = gera_lista_de_espera(primeiro_nomes, ultimo_nomes, n_bilhetes);
+	visualizacao(lista_de_espera);
+	//cout << primeiro_nomes[0] << endl;
+	nodo_paragem* lista_de_paragens = NULL;
+	lista_de_paragens = gera_paragens(paragens_nomes, n_paragens);
+	//nodo_paragem* temp = lista_de_paragens;
+	//while (temp != NULL) {
+		//cout << temp->dados.nome_da_paragem << endl;
+		//temp = temp->seguinte;
+	//}
 	char opcao;
 	bool sair = false;
 	while (!sair) {
