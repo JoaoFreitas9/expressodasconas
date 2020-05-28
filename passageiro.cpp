@@ -1,7 +1,26 @@
 #include<iostream>
 #include<string>
 #include"passageiro.h"
+#include<iomanip>
 using namespace std;
+
+void visualizacao(nodo_passageiro * espera)
+{
+    cout << "Fila de Espera:" << endl;
+    int a = 0;
+    nodo_passageiro * temp = espera;
+    cout << left<<setw(30);
+    while (temp != NULL) {
+        a = a + 1;
+        cout << temp->dados.ultimo_nome<<left << setw(30);
+        if (a == 3) {
+            cout << endl;
+            a = 0;
+        }
+        temp = temp->seguinte;
+    }
+    cout << endl;
+ }
 
 nodo_passageiro* criaNo(passageiro valor) {
     nodo_passageiro* novo = new nodo_passageiro;
@@ -21,26 +40,15 @@ nodo_passageiro* insereInicio(nodo_passageiro* inicio, passageiro valor) {
 
 
 nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nomes,int*n_bilhetes) {
-    nodo_passageiro* resultado = new nodo_passageiro;
+    nodo_passageiro* resultado = NULL;
     int i = 0;
-    passageiro valor;
-    int y = rand() % 43;
-    int x = rand() % 96;
-    valor.primeiro_nome = primeiro_nomes[y];
-    valor.ultimo_nome = ultimo_nomes[x];
-    int n = rand() % 9999;
-    while (n_bilhetes[n] == -1) {
-        n = rand() % 9999;
-    }
-    valor.n_bilhete = n_bilhetes[n];
-    n_bilhetes[n] = -1;
-    resultado = criaNo(valor);
-    while (i < 29) {
-        y = rand() % 43;
-        x = rand() % 96;
+    while (i < 30) {
+        passageiro valor;
+        int y = rand() % 43;
+        int x = rand() % 96;
         valor.primeiro_nome = primeiro_nomes[y];
         valor.ultimo_nome = ultimo_nomes[x];
-        n = rand() % 9999;
+        int n = rand() % 9999;
         while (n_bilhetes[n] == -1) {
             n = rand() % 9999;
         }
