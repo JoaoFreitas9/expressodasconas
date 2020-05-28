@@ -4,6 +4,46 @@
 #include<iomanip>
 using namespace std;
 
+nodo_autocarros* criaNo_autocarro(autocarro valor) {
+    nodo_autocarros* novo = new nodo_autocarros;
+    novo->dados = valor;
+    novo->seguinte = NULL;
+    return novo;
+}
+
+nodo_autocarros* iteracao_autocarro(nodo_autocarros* paragens, autocarro valor,int n_paragens) {
+    int i = 0;
+    nodo_autocarros* temp = paragens;
+    while (temp != NULL) {
+        i = i + 1;
+        temp = temp->seguinte;
+    }
+    if (i < n_paragens) {
+        insereInicio_autocarro(paragens, valor);
+    }
+    else {
+        insereInicio_autocarro(paragens, valor);
+        removefim_autocarro(paragens);
+    }
+}
+
+nodo_autocarros* insereInicio_autocarro(nodo_autocarros * inicio, autocarro valor) {
+        nodo_autocarros* novo = criaNo_autocarro(valor);
+        novo->seguinte = inicio;
+        inicio = novo;
+        return inicio;
+}
+
+nodo_autocarros* removefim_autocarro(nodo_autocarros* head) {
+    nodo_autocarros* temp = head;
+    while (temp->seguinte->seguinte != NULL) {
+        temp = temp->seguinte;
+    }
+    delete temp->seguinte;
+    temp->seguinte = NULL;
+    return head;
+}
+
 void visualizacao(nodo_passageiro * espera)
 {
     cout << "Fila de Espera:" << endl;
@@ -59,6 +99,7 @@ nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nom
     }
     return resultado;
 }
+
 
 nodo_passageiro* adiciona_quinze(string* primeiro_nomes, string* ultimo_nomes, int* n_bilhetes,nodo_passageiro*lista_de_espera) {
     nodo_passageiro* resultado = NULL;
