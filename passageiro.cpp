@@ -11,6 +11,13 @@ nodo_autocarros* criaNo_autocarro(autocarro valor) {
     return novo;
 }
 
+nodo_autocarros* insereInicio_autocarro(nodo_autocarros* inicio, autocarro valor) {
+    nodo_autocarros* novo = criaNo_autocarro(valor);
+    novo->seguinte = inicio;
+    inicio = novo;
+    return inicio;
+}
+
 nodo_autocarros* iteracao_autocarro(nodo_autocarros* paragens, autocarro valor,int n_paragens) {
     int i = 0;
     nodo_autocarros* temp = paragens;
@@ -19,20 +26,15 @@ nodo_autocarros* iteracao_autocarro(nodo_autocarros* paragens, autocarro valor,i
         temp = temp->seguinte;
     }
     if (i < n_paragens) {
-        insereInicio_autocarro(paragens, valor);
+        paragens=insereInicio_autocarro(paragens, valor);
     }
     else {
-        insereInicio_autocarro(paragens, valor);
-        removefim_autocarro(paragens);
+        paragens=insereInicio_autocarro(paragens, valor);
+        paragens=removefim_autocarro(paragens);
     }
+    return paragens;
 }
 
-nodo_autocarros* insereInicio_autocarro(nodo_autocarros * inicio, autocarro valor) {
-        nodo_autocarros* novo = criaNo_autocarro(valor);
-        novo->seguinte = inicio;
-        inicio = novo;
-        return inicio;
-}
 
 nodo_autocarros* removefim_autocarro(nodo_autocarros* head) {
     nodo_autocarros* temp = head;
