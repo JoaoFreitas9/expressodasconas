@@ -3,6 +3,17 @@
 #include<string>
 #include<iostream>
 using namespace std;
+
+struct nodo_autocarros {
+	autocarro dados;
+	nodo_autocarros* seguinte;
+};
+
+nodo_autocarros* insereInicio_autocarro(nodo_autocarros* inicio, autocarro valor);
+nodo_autocarros* iteracao_autocarro(nodo_autocarros* paragens, autocarro valor, int n_paragens);
+nodo_autocarros* criaNo_autocarro(autocarro valor);
+nodo_autocarros* removefim_autocarro(nodo_autocarros* head);
+
 struct passageiro {
 	string primeiro_nome;
 	string ultimo_nome;
