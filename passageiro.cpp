@@ -60,6 +60,34 @@ nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nom
     return resultado;
 }
 
+nodo_passageiro* adiciona_quinze(string* primeiro_nomes, string* ultimo_nomes, int* n_bilhetes,nodo_passageiro*lista_de_espera) {
+    nodo_passageiro* resultado = NULL;
+    int i = 0;
+    while (i < 15) {
+        passageiro valor;
+        int y = rand() % 43;
+        int x = rand() % 96;
+        valor.primeiro_nome = primeiro_nomes[y];
+        valor.ultimo_nome = ultimo_nomes[x];
+        int n = rand() % 9999;
+        while (n_bilhetes[n] == -1) {
+            n = rand() % 9999;
+        }
+        valor.n_bilhete = n_bilhetes[n];
+        n_bilhetes[n] = -1;
+        resultado = insereInicio(resultado, valor);
+        i = i + 1;
+    }
+    nodo_passageiro* temp = resultado;
+    while (temp != NULL) {
+        temp = temp->seguinte;
+    }
+    temp = lista_de_espera;
+    return resultado;
+}
+
+
+
 int* gera_lista_bilhetes() {
     int* resultado = new int[10000];
     int j = 0;
@@ -90,9 +118,13 @@ nodo_passageiro* removefim(nodo_passageiro* head) {
     return head;
 }
 
-autocarro gera_autocarro(nodo_passageiro* lista_de_espera, int& n_passageiros_lista_espera,char* caracteres) {
+autocarro gera_autocarro(string* primeiro_nome,string* ultimo_nome, nodo_passageiro* lista_de_espera, int& n_passageiros_lista_espera,char* caracteres) {
     autocarro resultado;
     resultado.matricula = gera_matricula(caracteres);
+    int y = rand() % 43;
+    int z = rand() % 96;
+    string nome= primeiro_nome[y]+" "+ ultimo_nome[z];
+    resultado.condutor = nome;
     int x = rand() & 5 + 5;
     resultado.capacidade = x;
     resultado.quantidade = x;
@@ -104,7 +136,6 @@ autocarro gera_autocarro(nodo_passageiro* lista_de_espera, int& n_passageiros_li
         i = i + 1;
     }
     resultado.utilizadores = temp;
-    nodo_passageiro* temp2 = lista_de_espera;
     int j = 0;
     while (j < x) {
         lista_de_espera = removefim(lista_de_espera);
