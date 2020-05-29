@@ -5,34 +5,27 @@
 #include <algorithm>
 using namespace std;
 
-nodo_paragem* criaNo_paragem(paragem valor) {
-	nodo_paragem* novo = new nodo_paragem;
-	novo->dados = valor;
-	novo->seguinte = NULL;
-	return novo;
-}
 
-
-nodo_paragem* insereInicio_paragem(nodo_paragem* inicio, paragem valor) {
-	nodo_paragem* novo = criaNo_paragem(valor);
+nodo_paragem* insereInicio_paragem(nodo_paragem* inicio,nodo_paragem* novo) { 
 	novo->seguinte = inicio;
 	inicio = novo;
 	return inicio;
 }
 
-nodo_paragem* gera_paragens(string* paragens_nomes,int n_paragens) {
+nodo_paragem* gera_paragens(string* paragens_nomes, int n_paragens) {
 	nodo_paragem* resultado = NULL;
 	int i = 0;
 	while (i < n_paragens) {
-		paragem valor;
+		nodo_paragem* valor = new nodo_paragem;
 		int x = rand() % 52;
 		while (paragens_nomes[x] == " ") {
 			x = rand() % 52;
 		}
-		valor.nome_da_paragem = paragens_nomes[x];
-		valor.arvore = NULL;
+		valor->nome_da_paragem = paragens_nomes[x];
+		valor->seguinte = NULL;
+		valor->raiz = NULL;
 		paragens_nomes[x] = " ";
-		insereInicio_paragem(resultado, valor);
+		resultado = insereInicio_paragem(resultado, valor);
 		i = i + 1;
 	}
 	return resultado;
@@ -96,7 +89,8 @@ node* pesquisar_no(node* raiz, int valor)
 	return raiz;
 }
 
- /*node* remover_no(node* raiz, node* no, node* antes){
+node* remover_no(node* raiz, node* no, node* antes) {
+	node* temp = NULL;
 	if (antes == NULL) {
 		if (no->esquerda == NULL && no->direita == NULL) {
 			raiz == NULL;
@@ -141,7 +135,7 @@ node* pesquisar_no(node* raiz, int valor)
 		}
 		else if (no->esquerda != NULL && no->direita == NULL) {
 			if (antes->numero > no->numero) {
-				antes->esquerda = no->numero;
+				antes->esquerda = no->direita;
 			}
 			else {
 				antes->direita = no->direita;
@@ -162,4 +156,6 @@ node* pesquisar_no(node* raiz, int valor)
 		else {
 			antes->direita = no->esquerda;
 		}
-	}*/
+	}
+	return raiz;
+}
