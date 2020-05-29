@@ -18,7 +18,7 @@ nodo_autocarros* insereInicio_autocarro(nodo_autocarros* inicio, autocarro valor
     return inicio;
 }
 
-nodo_autocarros* iteracao_autocarro(nodo_autocarros* paragens, autocarro valor,int n_paragens) {
+nodo_autocarros* iteracao_autocarro(nodo_autocarros* paragens, autocarro valor, int n_paragens) {
     int i = 0;
     nodo_autocarros* temp = paragens;
     while (temp != NULL) {
@@ -26,11 +26,11 @@ nodo_autocarros* iteracao_autocarro(nodo_autocarros* paragens, autocarro valor,i
         temp = temp->seguinte;
     }
     if (i < n_paragens) {
-        paragens=insereInicio_autocarro(paragens, valor);
+        paragens = insereInicio_autocarro(paragens, valor);
     }
     else {
-        paragens=insereInicio_autocarro(paragens, valor);
-        paragens=removefim_autocarro(paragens);
+        paragens = insereInicio_autocarro(paragens, valor);
+        paragens = removefim_autocarro(paragens);
     }
     return paragens;
 }
@@ -46,15 +46,15 @@ nodo_autocarros* removefim_autocarro(nodo_autocarros* head) {
     return head;
 }
 
-void visualizacao(nodo_passageiro * espera)
+void visualizacao(nodo_passageiro* espera)
 {
     cout << "Fila de Espera:" << endl;
     int a = 0;
-    nodo_passageiro * temp = espera;
-    cout << left<<setw(30);
+    nodo_passageiro* temp = espera;
+    cout << left << setw(30);
     while (temp != NULL) {
         a = a + 1;
-        cout << temp->dados.ultimo_nome<<left << setw(30);
+        cout << temp->dados.ultimo_nome << left << setw(30);
         if (a == 3) {
             cout << endl;
             a = 0;
@@ -62,7 +62,7 @@ void visualizacao(nodo_passageiro * espera)
         temp = temp->seguinte;
     }
     cout << endl;
- }
+}
 
 nodo_passageiro* criaNo(passageiro valor) {
     nodo_passageiro* novo = new nodo_passageiro;
@@ -81,7 +81,7 @@ nodo_passageiro* insereInicio(nodo_passageiro* inicio, passageiro valor) {
 
 
 
-nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nomes,int*n_bilhetes) {
+nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nomes, int* n_bilhetes) {
     nodo_passageiro* resultado = NULL;
     int i = 0;
     while (i < 30) {
@@ -96,14 +96,14 @@ nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nom
         }
         valor.n_bilhete = n_bilhetes[n];
         n_bilhetes[n] = -1;
-        resultado=insereInicio(resultado, valor);
+        resultado = insereInicio(resultado, valor);
         i = i + 1;
     }
     return resultado;
 }
 
 
-nodo_passageiro* adiciona_quinze(string* primeiro_nomes, string* ultimo_nomes, int* n_bilhetes,nodo_passageiro*lista_de_espera) {
+nodo_passageiro* adiciona_quinze(string* primeiro_nomes, string* ultimo_nomes, int* n_bilhetes, nodo_passageiro* lista_de_espera) {
     nodo_passageiro* resultado = NULL;
     int i = 0;
     while (i < 15) {
@@ -161,12 +161,12 @@ nodo_passageiro* removefim(nodo_passageiro* head) {
     return head;
 }
 
-autocarro gera_autocarro(string* primeiro_nome,string* ultimo_nome, nodo_passageiro* lista_de_espera, int& n_passageiros_lista_espera,char* caracteres) {
+autocarro gera_autocarro(string* primeiro_nome, string* ultimo_nome, nodo_passageiro* lista_de_espera, int& n_passageiros_lista_espera, char* caracteres) {
     autocarro resultado;
     resultado.matricula = gera_matricula(caracteres);
     int y = rand() % 43;
     int z = rand() % 96;
-    string nome= primeiro_nome[y]+" "+ ultimo_nome[z];
+    string nome = primeiro_nome[y] + " " + ultimo_nome[z];
     resultado.condutor = nome;
     int x = rand() & 5 + 5;
     resultado.capacidade = x;
