@@ -4,16 +4,6 @@
 #include<iostream>
 using namespace std;
 
-struct nodo_autocarros {
-	autocarro dados;
-	nodo_autocarros* seguinte;
-};
-
-nodo_autocarros* insereInicio_autocarro(nodo_autocarros* inicio, autocarro valor);
-nodo_autocarros* iteracao_autocarro(nodo_autocarros* paragens, autocarro valor, int n_paragens);
-nodo_autocarros* criaNo_autocarro(autocarro valor);
-nodo_autocarros* removefim_autocarro(nodo_autocarros* head);
-
 struct passageiro {
 	string primeiro_nome;
 	string ultimo_nome;
@@ -30,9 +20,22 @@ struct autocarro {
 	int quantidade;
 	string matricula;
 	string condutor;
-	nodo_passageiro * utilizadores;
+	nodo_passageiro* utilizadores;
 };
 
+struct nodo_autocarros {
+	autocarro dados;
+	nodo_autocarros* seguinte;
+};
+
+
+
+
+
+nodo_autocarros* insereInicio_autocarro(nodo_autocarros* inicio, autocarro valor);
+nodo_autocarros* iteracao_autocarro(nodo_autocarros* paragens, autocarro valor, int n_paragens);
+nodo_autocarros* criaNo_autocarro(autocarro valor);
+nodo_autocarros* removefim_autocarro(nodo_autocarros* head);
 nodo_passageiro* adiciona_quinze(string* primeiro_nomes, string* ultimo_nomes, int* n_bilhetes, nodo_passageiro* lista_de_espera);
 void visualizacao(nodo_passageiro* espera);
 nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nomes, int* n_bilhetes);
