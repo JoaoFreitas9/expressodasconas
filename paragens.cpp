@@ -6,7 +6,7 @@
 using namespace std;
 
 
-nodo_paragem* insereInicio_paragem(nodo_paragem* inicio,nodo_paragem* novo) { 
+nodo_paragem* insereInicio_paragem(nodo_paragem* inicio, nodo_paragem* novo) {
 	novo->seguinte = inicio;
 	inicio = novo;
 	return inicio;
@@ -159,3 +159,46 @@ node* remover_no(node* raiz, node* no, node* antes) {
 	}
 	return raiz;
 }
+
+nodo_paragem* apresenta_bilhetes() {
+	char opçao;
+	cout << "Escolha uma das opções: \n\n1- Número do bilhete em ordem crescente.\n2- Número do bilhete em forma de árvore binária. " << endl;
+	cin >> opçao;
+	if (opçao == 1) {
+		float precos[12];
+		string produtos[12];
+		int quantidade[12];
+		for (int x = 0; x < n_slots; x++) {
+			precos[x] = maquina[x].preco;
+			produtos[x] = maquina[x].produto;			// Função do projeto da máquina de vendas para ordenar numeros crescentemente, falta por a funcionar
+			quantidade[x] = maquina[x].quantidade;
+		}
+		for (int y = 0; y < n_slots; y++) {
+			for (int z = 0; z < n_slots; z++) {
+				if (precos[y] < precos[z]) {
+					float aux = precos[y];
+					string aux1 = produtos[y];
+					int aux2 = quantidade[y];
+					precos[y] = precos[z];
+					precos[z] = aux;
+					produtos[y] = produtos[z];
+					produtos[z] = aux1;
+					quantidade[y] = quantidade[z];
+					quantidade[z] = aux2;
+				}
+			}
+		}
+		for (int x = 0; x < n_slots; x++) {
+			cout << "Produto : " << produtos[x] << " | " << "Preço : " << precos[x] << " | " << "Quantidade: " << quantidade[x] << endl;
+		}
+		system("pause");
+	}
+	else if (opçao == 2) {
+		imprimeArvore(raiz, nivel) {
+		}
+	else {
+		cout << "Caratere inválido, por favor introduza um caratere válido." << endl;
+		apresenta_bilhetes();
+	}
+}
+	
