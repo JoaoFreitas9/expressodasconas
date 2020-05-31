@@ -186,3 +186,20 @@ autocarro gera_autocarro(string* primeiro_nome, string* ultimo_nome, nodo_passag
     }
     return resultado;
 }
+
+nodo_autocarros* altera_motorista(autocarro) {
+    string amatricula;
+    string ocondutor;
+    cout << "Introduza a matrícula do autocarro: " << endl;
+    cin >> amatricula;
+    if (amatricula == autocarro.matricula) {
+        cout << "***Matrícula Encontrada***" << endl;
+        cout << endl;
+        cout << "Introduza o novo nome para o motorista: " << endl;
+        cin >> ocondutor;
+    }
+    else {
+        cout << "***ERRO: Matrícula não encontrada, por favor tente outra vez."
+            altera_motorista(autocarro);
+    }
+}
