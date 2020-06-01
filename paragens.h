@@ -23,5 +23,5 @@ node* inserir_no(node* raiz, int valor);
 void imprimeArvore(node* raiz, int nivel);
 node* pesquisar_no(node* raiz, int valor);
 node* remover_no(node* raiz, node* no, node* antes);
+void insere_valor_posicao_paragem(nodo_paragem* lista_de_paragens, int posicao, int valor_n_bilhete);
 #endif
-
