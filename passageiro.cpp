@@ -46,7 +46,7 @@ nodo_autocarros* removefim_autocarro(nodo_autocarros* head) {
     return head;
 }
 
-void visualizacao(nodo_passageiro* espera)
+void visualizacao(nodo_passageiro* espera, nodo_paragem * head, nodo_autocarros*bus)
 {
     cout << "Fila de Espera:" << endl;
     int a = 0;
@@ -62,7 +62,26 @@ void visualizacao(nodo_passageiro* espera)
         temp = temp->seguinte;
     }
     cout << endl;
+    cout << endl;
+    nodo_paragem* temp2 = head;
+    nodo_autocarros* temp3 = bus;
+    while(temp2!= NULL) {
+        cout << "Paragem: " << temp2->nome_da_paragem << endl;;
+    	cout << "Autocarro: " << temp3->dados.matricula << " Motorista: " << temp3->dados.condutor << endl;
+    	int n = 0;
+    	cout << "Passageiros: ";
+        nodo_autocarros* temp3 = bus;
+    	while(temp3 !=NULL) 
+    	{
+    		cout << temp3->dados.utilizadores->dados.primeiro_nome << " " <<temp3->dados.utilizadores->dados.n_bilhete <<  ", ";
+            temp3 = temp3->seguinte;
+    	}
+        temp2 = temp2->seguinte;
+        cout << endl;
+        cout << endl;
+    }
 }
+
 
 nodo_passageiro* criaNo(passageiro valor) {
     nodo_passageiro* novo = new nodo_passageiro;
