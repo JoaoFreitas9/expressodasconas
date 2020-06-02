@@ -20,12 +20,12 @@ int main(){
 	nodo_passageiro* lista_de_espera = NULL;
 	int n_passageiros_lista_espera = 30;
 	lista_de_espera = gera_lista_de_espera(primeiro_nomes, ultimo_nomes, n_bilhetes);
-	visualizacao(lista_de_espera);
 	nodo_paragem* lista_de_paragens = NULL;
 	lista_de_paragens = gera_paragens(paragens_nomes, n_paragens);
 	nodo_autocarros* lista_de_autocarros = NULL;
 	autocarro primeiro_autocarro = gera_autocarro(primeiro_nomes, ultimo_nomes, lista_de_espera, n_passageiros_lista_espera, matricula);
 	lista_de_autocarros = insereInicio_autocarro(lista_de_autocarros, primeiro_autocarro);
+	visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros );
 	char opcao;
 	bool sair = false;
 	while (!sair) {
