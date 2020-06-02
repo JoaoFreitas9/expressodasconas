@@ -37,7 +37,7 @@ nodo_autocarros* iteracao_autocarro(nodo_autocarros* paragens, autocarro valor, 
 nodo_autocarros* criaNo_autocarro(autocarro valor);
 nodo_autocarros* removefim_autocarro(nodo_autocarros* head);
 nodo_passageiro* adiciona_quinze(string* primeiro_nomes, string* ultimo_nomes, int* n_bilhetes, nodo_passageiro* lista_de_espera);
-void visualizacao(nodo_passageiro* espera);
+void visualizacao(nodo_passageiro* espera, nodo_paragem* head, nodo_autocarros* bus);
 nodo_passageiro* gera_lista_de_espera(string* primeiro_nomes, string* ultimo_nomes, int* n_bilhetes);
 nodo_passageiro* insereInicio(nodo_passageiro* inicio, passageiro valor);
 nodo_passageiro* criaNo(passageiro valor);
