@@ -2,7 +2,53 @@
 #include<string>
 #include"passageiro.h"
 #include<iomanip>
+#include"paragens.h"
 using namespace std;
+
+void visualizacao(nodo_passageiro* espera, nodo_paragem * head, nodo_autocarros*bus)
+{
+    cout << "Fila de Espera:" << endl;
+    int a = 0;
+    nodo_passageiro* temp = espera;
+    cout << left << setw(30);
+    while (temp != NULL) {
+        a = a + 1;
+        cout << temp->dados.ultimo_nome << left << setw(30);
+        if (a == 3) {
+            cout << endl;
+            a = 0;
+        }
+        temp = temp->seguinte;
+    }
+    cout << endl;
+    cout << endl;
+    nodo_paragem* temp2 = head;
+    nodo_autocarros* temp3 = bus;
+    nodo_passageiro* temppassageiro = temp3->dados.utilizadores;
+    
+    while(temp2!= NULL) {
+        if (temp3 != NULL) {
+            cout << "Paragem: " << temp2->nome_da_paragem << endl;;
+            cout << "Autocarro: " << temp3->dados.matricula << "   Motorista: " << temp3->dados.condutor << endl;
+            int n = 0;
+            temppassageiro = temp3->dados.utilizadores;
+            cout << "Passageiros: ";
+            while (temppassageiro != NULL)
+            {
+                cout << temppassageiro->dados.primeiro_nome << " " << temppassageiro->dados.n_bilhete << "| ";
+                temppassageiro = temppassageiro->seguinte;
+            }
+            temp3 = temp3->seguinte;
+        }
+        else {
+            cout << endl;
+            cout << "Paragem: " << temp2->nome_da_paragem << endl;;
+        }
+        temp2 = temp2->seguinte;
+        cout << endl; 
+        cout << endl;
+    }
+}
 
 nodo_autocarros* criaNo_autocarro(autocarro valor) {
     nodo_autocarros* novo = new nodo_autocarros;
@@ -45,43 +91,6 @@ nodo_autocarros* removefim_autocarro(nodo_autocarros* head) {
     temp->seguinte = NULL;
     return head;
 }
-
-void visualizacao(nodo_passageiro* espera, nodo_paragem * head, nodo_autocarros*bus)
-{
-    cout << "Fila de Espera:" << endl;
-    int a = 0;
-    nodo_passageiro* temp = espera;
-    cout << left << setw(30);
-    while (temp != NULL) {
-        a = a + 1;
-        cout << temp->dados.ultimo_nome << left << setw(30);
-        if (a == 3) {
-            cout << endl;
-            a = 0;
-        }
-        temp = temp->seguinte;
-    }
-    cout << endl;
-    cout << endl;
-    nodo_paragem* temp2 = head;
-    nodo_autocarros* temp3 = bus;
-    while(temp2!= NULL) {
-        cout << "Paragem: " << temp2->nome_da_paragem << endl;;
-    	cout << "Autocarro: " << temp3->dados.matricula << " Motorista: " << temp3->dados.condutor << endl;
-    	int n = 0;
-    	cout << "Passageiros: ";
-        nodo_autocarros* temp3 = bus;
-    	while(temp3 !=NULL) 
-    	{
-    		cout << temp3->dados.utilizadores->dados.primeiro_nome << " " <<temp3->dados.utilizadores->dados.n_bilhete <<  ", ";
-            temp3 = temp3->seguinte;
-    	}
-        temp2 = temp2->seguinte;
-        cout << endl;
-        cout << endl;
-    }
-}
-
 
 nodo_passageiro* criaNo(passageiro valor) {
     nodo_passageiro* novo = new nodo_passageiro;
@@ -141,10 +150,12 @@ nodo_passageiro* adiciona_quinze(string* primeiro_nomes, string* ultimo_nomes, i
         i = i + 1;
     }
     nodo_passageiro* temp = resultado;
-    while (temp != NULL) {
+    int p = 0;
+    while (p<14) {
         temp = temp->seguinte;
+        p = p + 1;
     }
-    temp = lista_de_espera;
+    temp->seguinte=lista_de_espera;
     return resultado;
 }
 
@@ -187,38 +198,27 @@ autocarro gera_autocarro(string* primeiro_nome, string* ultimo_nome, nodo_passag
     int z = rand() % 96;
     string nome = primeiro_nome[y] + " " + ultimo_nome[z];
     resultado.condutor = nome;
-    int x = rand() & 5 + 5;
+    int x = 5;//rand() & 5 + 5;
     resultado.capacidade = x;
     resultado.quantidade = x;
     n_passageiros_lista_espera = n_passageiros_lista_espera - x;
     nodo_passageiro* temp = lista_de_espera;
     int i = 0;
+    nodo_passageiro* novo = NULL;
     while (i < n_passageiros_lista_espera) {
+        
         temp = temp->seguinte;
         i = i + 1;
     }
-    resultado.utilizadores = temp;
+    while (temp != NULL) {
+        novo = insereInicio(novo, temp->dados);
+        temp = temp->seguinte;
+    }
+    resultado.utilizadores = novo;
     int j = 0;
     while (j < x) {
         lista_de_espera = removefim(lista_de_espera);
         j = j + 1;
     }
     return resultado;
-}
-
-nodo_autocarros* altera_motorista(autocarro) {
-    string amatricula;
-    string ocondutor;
-    cout << "Introduza a matrícula do autocarro: " << endl;
-    cin >> amatricula;
-    if (amatricula == autocarro.matricula) {
-        cout << "***Matrícula Encontrada***" << endl;
-        cout << endl;
-        cout << "Introduza o novo nome para o motorista: " << endl;
-        cin >> ocondutor;
-    }
-    else {
-        cout << "***ERRO: Matrícula não encontrada, por favor tente outra vez."
-            altera_motorista(autocarro);
-    }
 }
