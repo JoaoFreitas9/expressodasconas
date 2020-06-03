@@ -10,10 +10,9 @@ void visualizacao(nodo_passageiro* espera, nodo_paragem * head, nodo_autocarros*
     cout << "Fila de Espera:" << endl;
     int a = 0;
     nodo_passageiro* temp = espera;
-    cout << left << setw(30);
     while (temp != NULL) {
         a = a + 1;
-        cout << temp->dados.ultimo_nome << left << setw(30);
+        cout << left << setw(30) << temp->dados.ultimo_nome;
         if (a == 3) {
             cout << endl;
             a = 0;
@@ -100,6 +99,16 @@ nodo_passageiro* criaNo(passageiro valor) {
 }
 
 
+nodo_passageiro* insereInicio(nodo_passageiro* inicio,nodo_passageiro * novo) {
+    if (inicio == NULL) {
+        inicio = novo;
+    }
+    else {
+        novo->seguinte = inicio;
+        inicio = novo;
+    }
+    return inicio;
+}
 nodo_passageiro* insereInicio(nodo_passageiro* inicio, passageiro valor) {
     nodo_passageiro* novo = criaNo(valor);
     novo->seguinte = inicio;
@@ -198,27 +207,32 @@ autocarro gera_autocarro(string* primeiro_nome, string* ultimo_nome, nodo_passag
     int z = rand() % 96;
     string nome = primeiro_nome[y] + " " + ultimo_nome[z];
     resultado.condutor = nome;
-    int x = 5;//rand() & 5 + 5;
+    int x = rand() % 5 + 5;
     resultado.capacidade = x;
     resultado.quantidade = x;
     n_passageiros_lista_espera = n_passageiros_lista_espera - x;
     nodo_passageiro* temp = lista_de_espera;
     int i = 0;
     nodo_passageiro* novo = NULL;
-    while (i < n_passageiros_lista_espera) {
-        
+    /*while (i < n_passageiros_lista_espera) {
         temp = temp->seguinte;
         i = i + 1;
-    }
-    while (temp != NULL) {
-        novo = insereInicio(novo, temp->dados);
-        temp = temp->seguinte;
+    }*/
+    while (x > 0) {
+        nodo_passageiro* temp1 = lista_de_espera;
+        while (temp1->seguinte->seguinte != NULL) {
+            temp1 = temp1->seguinte;
+        }
+        nodo_passageiro* retirado = temp1->seguinte;
+        temp1->seguinte = NULL;
+        novo = insereInicio(novo, retirado);
+        x--;
     }
     resultado.utilizadores = novo;
     int j = 0;
-    while (j < x) {
+    /*while (j < x) {
         lista_de_espera = removefim(lista_de_espera);
         j = j + 1;
-    }
+    }*/
     return resultado;
 }
