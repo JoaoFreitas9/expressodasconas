@@ -4,8 +4,9 @@ using namespace std;
 #include <stdlib.h>
 #include <time.h>
 #include"passageiro.h"
+#include"paragens.h"
 
-void bilhete_crescente(nodo_autocarros*bus, nodo_paragem* paragens) {
+void bilhete_crescente(nodo_autocarros* bus, nodo_paragem* paragens) {
     string paragem;
     string resultado = "";
     cout << "Qual é a paragem que deseja realizar a opção: ";
@@ -13,7 +14,7 @@ void bilhete_crescente(nodo_autocarros*bus, nodo_paragem* paragens) {
     nodo_paragem* temp = paragens;
     while (temp != NULL)
     {
-        if (paragem==temp->nome_da_paragem) {
+        if (paragem == temp->nome_da_paragem) {
             cout << "***Paragem encontrada***" << endl;
             resultado = temp->nome_da_paragem;
         }
@@ -30,7 +31,7 @@ void bilhete_crescente(nodo_autocarros*bus, nodo_paragem* paragens) {
         cout << "***Bilhetes por ordem crescente***" << endl;
         infixa(temp2->raiz);
     }
-    
+
 }
 
 void bilhete_por_arvore_binaria(nodo_autocarros* bus, nodo_paragem* paragens) {
@@ -59,5 +60,74 @@ void bilhete_por_arvore_binaria(nodo_autocarros* bus, nodo_paragem* paragens) {
         int nivel = altura(temp2->raiz);
         cout << "***Bilhetes por ordem crescente***" << endl;
         imprimeArvore(temp2->raiz, nivel);
+    }
+}
+
+node* remover_bilhete(node* raiz, nodo_paragem* nome_da_paragem) {
+    node* no = raiz;
+    node* prev = NULL;
+    string paragem;
+    string resultado = "";
+    int bilhete;
+    cout << "Qual é a paragem que deseja realizar a opção: ";
+    cin >> paragem;
+    nodo_paragem* temp = nome_da_paragem;
+    while (temp != NULL)
+    {
+        if (paragem == temp->nome_da_paragem) {
+            cout << "***Paragem encontrada***" << endl;
+            cout << "Introduza o número do bilhete que deseja retirar: ";
+            cin >> bilhete;
+            resultado = temp->nome_da_paragem;
+            raiz = temp->raiz;
+            remover_no(raiz, no, prev);
+        }
+        else if (no->numero > bilhete) {
+            prev = no;
+            no = no->esquerda;
+        }
+        else {
+            prev = no;
+            no = no->direita;
+        }
+
+    }
+    return raiz;
+}
+
+nodo_autocarros* alterar_motorista(nodo_autocarros* bus) {
+    nodo_autocarros* temp = bus;
+    string matricula;
+    string nome_motorista;
+    cout << "Introduza a matrícula do autocarro que deseja alterar o motorista: ";
+    cin >> matricula;
+    while (temp != NULL) {
+        if (matricula == temp->dados.matricula) {
+            cout << "***Autocarro com matricula associada encontrado***" << endl;
+            cout << "Qual o novo motorista que deseja introduzir: ";
+            cin >> nome_motorista;
+            temp->dados.condutor = nome_motorista;
+            temp = temp->seguinte;
+        }
+        else {
+            temp = temp->seguinte;
+        }
+    }
+    return bus;
+}
+
+void remover_fila_espera(nodo_passageiro* lista_de_espera) {
+    nodo_passageiro* temp = lista_de_espera;
+    int bilhete;
+    cout << "Indique o número do bilhete do passageiro a remover: ";
+    cin >> bilhete;
+    while (temp != NULL) {
+        if (temp->dados.n_bilhete == bilhete) {
+            delete temp;
+            temp = temp->seguinte;
+        }
+        else {
+            temp = temp->seguinte;
+        }
     }
 }
