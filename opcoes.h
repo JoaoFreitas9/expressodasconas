@@ -1,3 +1,5 @@
+#ifndef opcoes_H
+#define opcoes_H
 using namespace std;
 #include <iostream>
 #include <locale>
