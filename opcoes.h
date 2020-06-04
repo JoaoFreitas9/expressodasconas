@@ -1,3 +1,5 @@
+#ifndef opcoes_H
+#define opcoes_H
 using namespace std;
 #include <iostream>
 #include <locale>
@@ -7,3 +9,4 @@ using namespace std;
 
 void bilhete_crescente(nodo_autocarros* bus,nodo_paragem*paragem);
 void bilhete_por_arvore_binaria(nodo_autocarros* bus, nodo_paragem* paragens);
+#endif
