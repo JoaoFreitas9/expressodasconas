@@ -80,7 +80,7 @@ int main() {
 						switch (escolha)
 						{
 						case 'o':
-							bilhete_crescente(lista_de_autocarros, lista_de_paragens);
+							bilhete_crescente(lista_de_paragens);
 							break;
 						case 'a':
 							bilhete_por_arvore_binaria(lista_de_autocarros, lista_de_paragens);
