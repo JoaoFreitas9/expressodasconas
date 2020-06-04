@@ -160,7 +160,7 @@ node* remover_no(node* raiz, node* no, node* antes) {
 	return raiz;
 }
 
-void insere_valor_posicao_paragem(nodo_paragem* lista_de_paragens, int posicao,int valor_n_bilhete) {
+void insere_valor_posicao_paragem(nodo_paragem* lista_de_paragens, int posicao, int valor_n_bilhete) {
 	nodo_paragem* temp = lista_de_paragens;
 	int i = 0;
 	while (i != posicao) {
@@ -169,4 +169,25 @@ void insere_valor_posicao_paragem(nodo_paragem* lista_de_paragens, int posicao,i
 	}
 	temp->raiz = inserir_no(temp->raiz, valor_n_bilhete);
 }
-	
+int altura(node* raiz) {
+	if (raiz == NULL) {
+		return 0;
+	}
+	int alt_e = altura(raiz->esquerda);
+	int alt_d = altura(raiz->direita);
+	if (alt_e > alt_d) {
+		return alt_e + 1;
+	}
+	else {
+		return alt_d + 1;
+	}
+}
+
+void infixa(node* raiz) {
+	if (raiz == NULL) {
+		return;
+	}
+	infixa(raiz->esquerda);
+	cout << raiz->numero << " | ";
+	infixa(raiz->direita);
+}
