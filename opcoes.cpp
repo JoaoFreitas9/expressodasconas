@@ -99,6 +99,7 @@ nodo_autocarros* alterar_motorista(nodo_autocarros* bus) {
     nodo_autocarros* temp = bus;
     string matricula;
     string nome_motorista;
+    string resultado="";
     cout << "Introduza a matrícula do autocarro que deseja alterar o motorista: ";
     cin >> matricula;
     while (temp != NULL) {
@@ -107,11 +108,15 @@ nodo_autocarros* alterar_motorista(nodo_autocarros* bus) {
             cout << "Qual o novo motorista que deseja introduzir: ";
             cin >> nome_motorista;
             temp->dados.condutor = nome_motorista;
+            resultado = nome_motorista;
             temp = temp->seguinte;
         }
         else {
             temp = temp->seguinte;
         }
+    }
+    if (resultado == "") {
+        cout << "***Autocarro com matricula associada não encontrado***" << endl;
     }
     return bus;
 }
@@ -121,12 +126,28 @@ void remover_fila_espera(nodo_passageiro* lista_de_espera) {
     int bilhete;
     cout << "Indique o número do bilhete do passageiro a remover: ";
     cin >> bilhete;
-    while (temp != NULL) {
-        if (temp->dados.n_bilhete == bilhete) {
-            delete temp;
+    while (temp->dados.n_bilhete != NULL) {
+        if (bilhete != temp->dados.n_bilhete) {
             temp = temp->seguinte;
         }
         else {
+            delete temp;
+            temp = temp->seguinte;
+        }
+    }
+}
+
+void remover_passageiro(nodo_autocarros* bus) {
+    nodo_autocarros* temp = bus;
+    int bilhete;
+    cout << "Indique o número do bilhete do passageiro a remover: ";
+    cin >> bilhete;
+    while (temp->dados.utilizadores->dados.n_bilhete != NULL) {
+        if (bilhete != temp->dados.utilizadores->dados.n_bilhete) {
+            temp = temp->seguinte;
+        }
+        else {
+            delete temp;
             temp = temp->seguinte;
         }
     }
