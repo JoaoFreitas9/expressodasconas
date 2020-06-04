@@ -3,11 +3,11 @@ using namespace std;
 #include <locale>
 #include <stdlib.h>
 #include <time.h>
-#include"escritaeleitura.h"
-#include"passageiro.h"
-#include"paragens.h"
+#include "escritaeleitura.h"
+#include "passageiro.h"
+#include "paragens.h"
 #include "interacaopp.h"
-#include "opcoes.h"
+#include "opçoes.h"
 
 int main() {
 	srand(time(NULL));
@@ -26,7 +26,7 @@ int main() {
 	nodo_autocarros* lista_de_autocarros = NULL;
 	autocarro primeiro_autocarro = gera_autocarro(primeiro_nomes, ultimo_nomes, lista_de_espera, n_passageiros_lista_espera, matricula);
 	lista_de_autocarros = insereInicio_autocarro(lista_de_autocarros, primeiro_autocarro);
-	visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros );
+	visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 	char opcao;
 	bool sair = false;
 	bool bazar = false;
@@ -62,9 +62,12 @@ int main() {
 				{
 				case '1':
 					cout << "***Escolheu a opção Remover passageiros nos autocarros***" << endl;
+					visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 					break;
 				case'2':
 					cout << "***Escolheu a opção Remover Passageiros em Fila de Espera***" << endl;
+					remover_fila_espera(lista_de_espera);
+					visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 					break;
 				case '3':
 					cout << "***Escolheu a opção Apresentar Bilhetes por Paragem***" << endl;
@@ -77,7 +80,6 @@ int main() {
 						switch (escolha)
 						{
 						case 'o':
-							
 							bilhete_crescente(lista_de_autocarros, lista_de_paragens);
 							break;
 						case 'a':
@@ -94,9 +96,12 @@ int main() {
 					break;
 				case'4':
 					cout << "***Escolheu a opção Alterar Motorista***" << endl;
+					alterar_motorista(lista_de_autocarros);
+					visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 					break;
 				case '5':
-					cout << "***Escolheu a opção Remover Bilhete da Paragem***" << endl;
+					cout << "***Escolheu a opção Remover Bilhete***" << endl;
+					visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 					break;
 				case'0':
 					cout << "***Escolheu a opção de voltar***" << endl;
