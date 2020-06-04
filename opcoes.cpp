@@ -6,7 +6,7 @@ using namespace std;
 #include"passageiro.h"
 #include"paragens.h"
 
-void bilhete_crescente(nodo_autocarros* bus, nodo_paragem* paragens) {
+void bilhete_crescente(nodo_paragem* paragens) {
     string paragem;
     string resultado = "";
     cout << "Qual é a paragem que deseja realizar a opção: ";
