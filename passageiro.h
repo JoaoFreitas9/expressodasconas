@@ -2,6 +2,7 @@
 #define passageiro_H
 #include<string>
 #include<iostream>
+#include "paragens.h"
 using namespace std;
 
 struct passageiro {
