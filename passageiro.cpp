@@ -214,10 +214,6 @@ autocarro gera_autocarro(string* primeiro_nome, string* ultimo_nome, nodo_passag
     nodo_passageiro* temp = lista_de_espera;
     int i = 0;
     nodo_passageiro* novo = NULL;
-    /*while (i < n_passageiros_lista_espera) {
-        temp = temp->seguinte;
-        i = i + 1;
-    }*/
     while (x > 0) {
         nodo_passageiro* temp1 = lista_de_espera;
         while (temp1->seguinte->seguinte != NULL) {
@@ -230,9 +226,5 @@ autocarro gera_autocarro(string* primeiro_nome, string* ultimo_nome, nodo_passag
     }
     resultado.utilizadores = novo;
     int j = 0;
-    /*while (j < x) {
-        lista_de_espera = removefim(lista_de_espera);
-        j = j + 1;
-    }*/
     return resultado;
 }
