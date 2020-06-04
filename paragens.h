@@ -1,3 +1,4 @@
+#ifndef PARAGENS_H
 #define PARAGENS_H
 #include <iostream>
 #include <string>
@@ -22,6 +23,7 @@ node* inserir_no(node* raiz, int valor);
 void imprimeArvore(node* raiz, int nivel);
 node* pesquisar_no(node* raiz, int valor);
 node* remover_no(node* raiz, node* no, node* antes);
+node* remover_bilhete(node* raiz, nodo_paragem* nome_da_paragem);
 void insere_valor_posicao_paragem(nodo_paragem* lista_de_paragens, int posicao, int valor_n_bilhete);
 int altura(node* raiz);
 void infixa(node* raiz);
