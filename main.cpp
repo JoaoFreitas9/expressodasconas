@@ -7,6 +7,7 @@ using namespace std;
 #include"passageiro.h"
 #include"paragens.h"
 #include "interacaopp.h"
+#include "opcoes.h"
 
 int main() {
 	srand(time(NULL));
@@ -25,15 +26,11 @@ int main() {
 	nodo_autocarros* lista_de_autocarros = NULL;
 	autocarro primeiro_autocarro = gera_autocarro(primeiro_nomes, ultimo_nomes, lista_de_espera, n_passageiros_lista_espera, matricula);
 	lista_de_autocarros = insereInicio_autocarro(lista_de_autocarros, primeiro_autocarro);
-	nodo_passageiro* temp = primeiro_autocarro.utilizadores;
-	while (temp != NULL) {
-		cout << temp->dados.primeiro_nome<<endl;
-		temp = temp->seguinte;
-	}
 	visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros );
 	char opcao;
 	bool sair = false;
-	while (!sair) {
+	bool bazar = false;
+	while (!bazar) {
 		bool voltar = false;
 		cout << "Escolha a sua opção:" << endl;
 		cout << "(s)eguinte ou (o)pções:  ";
@@ -46,6 +43,7 @@ int main() {
 			primeiro_autocarro = gera_autocarro(primeiro_nomes, ultimo_nomes, lista_de_espera, n_passageiros_lista_espera, matricula);
 			lista_de_autocarros = iteracao_autocarro(lista_de_autocarros, primeiro_autocarro, n_paragens);
 			lista_de_espera = adiciona_quinze(primeiro_nomes, ultimo_nomes, n_bilhetes, lista_de_espera);
+			n_passageiros_lista_espera = n_passageiros_lista_espera + 1;
 			visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 			break;
 		case 'o':
@@ -70,6 +68,29 @@ int main() {
 					break;
 				case '3':
 					cout << "***Escolheu a opção Apresentar Bilhetes por Paragem***" << endl;
+					char escolha;
+					while (!sair) {
+						sair = false;
+						cout << "Escolha a sua opção:" << endl;
+						cout << "(o)rdem crescente ou (a)rvore binária ou (v)oltar ";
+						std::cin >> escolha;
+						switch (escolha)
+						{
+						case 'o':
+							
+							bilhete_crescente(lista_de_autocarros, lista_de_paragens);
+							break;
+						case 'a':
+							bilhete_por_arvore_binaria(lista_de_autocarros, lista_de_paragens);
+							break;
+						case 'v':
+							sair = true;
+							break;
+						default:
+							cout << "Inseriu um caratere inválido." << endl;
+							break;
+						}
+					}
 					break;
 				case'4':
 					cout << "***Escolheu a opção Alterar Motorista***" << endl;
