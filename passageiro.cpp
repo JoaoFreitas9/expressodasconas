@@ -5,14 +5,15 @@
 #include"paragens.h"
 using namespace std;
 
-void visualizacao(nodo_passageiro* espera, nodo_paragem * head, nodo_autocarros*bus)
+void visualizacao(nodo_passageiro* espera, nodo_paragem* head, nodo_autocarros* bus)
 {
-    cout << "Fila de Espera:" << endl;
+    cout << "FILA DE ESPERA:" << endl;
+    cout << endl;
     int a = 0;
     nodo_passageiro* temp = espera;
     while (temp != NULL) {
         a = a + 1;
-        cout << left << setw(30) << temp->dados.ultimo_nome;
+        cout << "(" << temp->dados.n_bilhete << ") " << left << setw(30) << temp->dados.ultimo_nome;
         if (a == 3) {
             cout << endl;
             a = 0;
@@ -24,14 +25,14 @@ void visualizacao(nodo_passageiro* espera, nodo_paragem * head, nodo_autocarros*
     nodo_paragem* temp2 = head;
     nodo_autocarros* temp3 = bus;
     nodo_passageiro* temppassageiro = temp3->dados.utilizadores;
-    
-    while(temp2!= NULL) {
+
+    while (temp2 != NULL) {
         if (temp3 != NULL) {
-            cout << "Paragem: " << temp2->nome_da_paragem << endl;;
-            cout << "Autocarro: " << temp3->dados.matricula << "   Motorista: " << temp3->dados.condutor << endl;
+            cout << "PARAGEM: " << temp2->nome_da_paragem << endl;;
+            cout << "AUTOCARRO: " << temp3->dados.matricula << "  --  MOTORISTA: " << temp3->dados.condutor << endl;
             int n = 0;
             temppassageiro = temp3->dados.utilizadores;
-            cout << "Passageiros: ";
+            cout << "PASSAGEIROS: ";
             while (temppassageiro != NULL)
             {
                 cout << temppassageiro->dados.primeiro_nome << " " << temppassageiro->dados.n_bilhete << "| ";
@@ -41,10 +42,10 @@ void visualizacao(nodo_passageiro* espera, nodo_paragem * head, nodo_autocarros*
         }
         else {
             cout << endl;
-            cout << "Paragem: " << temp2->nome_da_paragem << endl;;
+            cout << "PARAGEM: " << temp2->nome_da_paragem << endl;;
         }
         temp2 = temp2->seguinte;
-        cout << endl; 
+        cout << endl;
         cout << endl;
     }
 }
