@@ -47,4 +47,6 @@ int* gera_lista_bilhetes();
 string gera_matricula(char* caracteres);
 autocarro gera_autocarro(string* primeiro_nome, string* ultimo_nome, nodo_passageiro* lista_de_espera, int& n_passageiros_lista_espera, char* caracteres);
 nodo_passageiro* insereInicio(nodo_passageiro* inicio, passageiro valor);
+nodo_passageiro* removeinicio(nodo_passageiro* head);
+nodo_passageiro* removeposicao(nodo_passageiro* head, int posicao);
 #endif
