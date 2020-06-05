@@ -5,15 +5,14 @@
 #include"paragens.h"
 using namespace std;
 
-void visualizacao(nodo_passageiro* espera, nodo_paragem* head, nodo_autocarros* bus)
+void visualizacao(nodo_passageiro* espera, nodo_paragem * head, nodo_autocarros*bus)
 {
-    cout << "FILA DE ESPERA:" << endl;
-    cout << endl;
+    cout << "Fila de Espera:" << endl;
     int a = 0;
     nodo_passageiro* temp = espera;
     while (temp != NULL) {
         a = a + 1;
-        cout << "(" << temp->dados.n_bilhete << ") " << left << setw(30) << temp->dados.ultimo_nome;
+        cout <<"("<< temp->dados.n_bilhete<<") " << left << setw(30)<< temp->dados.ultimo_nome;
         if (a == 3) {
             cout << endl;
             a = 0;
@@ -25,14 +24,14 @@ void visualizacao(nodo_passageiro* espera, nodo_paragem* head, nodo_autocarros* 
     nodo_paragem* temp2 = head;
     nodo_autocarros* temp3 = bus;
     nodo_passageiro* temppassageiro = temp3->dados.utilizadores;
-
-    while (temp2 != NULL) {
+    
+    while(temp2!= NULL) {
         if (temp3 != NULL) {
-            cout << "PARAGEM: " << temp2->nome_da_paragem << endl;;
-            cout << "AUTOCARRO: " << temp3->dados.matricula << "  --  MOTORISTA: " << temp3->dados.condutor << endl;
+            cout << "Paragem: " << temp2->nome_da_paragem << endl;;
+            cout << "Autocarro: " << temp3->dados.matricula << "   Motorista: " << temp3->dados.condutor << endl;
             int n = 0;
             temppassageiro = temp3->dados.utilizadores;
-            cout << "PASSAGEIROS: ";
+            cout << "Passageiros: ";
             while (temppassageiro != NULL)
             {
                 cout << temppassageiro->dados.primeiro_nome << " " << temppassageiro->dados.n_bilhete << "| ";
@@ -42,10 +41,10 @@ void visualizacao(nodo_passageiro* espera, nodo_paragem* head, nodo_autocarros* 
         }
         else {
             cout << endl;
-            cout << "PARAGEM: " << temp2->nome_da_paragem << endl;;
+            cout << "Paragem: " << temp2->nome_da_paragem << endl;;
         }
         temp2 = temp2->seguinte;
-        cout << endl;
+        cout << endl; 
         cout << endl;
     }
 }
@@ -191,15 +190,7 @@ string gera_matricula(char* caracteres) {
     }
     return  matricula;
 }
-nodo_passageiro* removefim(nodo_passageiro* head) {
-    nodo_passageiro* temp = head;
-    while (temp->seguinte->seguinte != NULL) {
-        temp = temp->seguinte;
-    }
-    delete temp->seguinte;
-    temp->seguinte = NULL;
-    return head;
-}
+
 
 autocarro gera_autocarro(string* primeiro_nome, string* ultimo_nome, nodo_passageiro* lista_de_espera, int& n_passageiros_lista_espera, char* caracteres) {
     autocarro resultado;
@@ -228,4 +219,38 @@ autocarro gera_autocarro(string* primeiro_nome, string* ultimo_nome, nodo_passag
     resultado.utilizadores = novo;
     int j = 0;
     return resultado;
+}
+nodo_passageiro* removeinicio(nodo_passageiro* head) {
+    nodo_passageiro* temp = head;
+    if (head == NULL) {
+        cout << "Lista vazia";
+        return NULL;
+    }
+    else {
+        nodo_passageiro* temp = head->seguinte;
+        delete head;
+        return temp;
+    }
+}
+nodo_passageiro* removefim(nodo_passageiro* head) {
+    nodo_passageiro* temp = head;
+    while (temp->seguinte->seguinte != NULL) {
+        temp = temp->seguinte;
+    }
+    delete temp->seguinte;
+    temp->seguinte = NULL;
+    return head;
+}
+nodo_passageiro* removeposicao(nodo_passageiro* head, int posicao) {
+    nodo_passageiro* temp = head;
+    int x = 0;
+    while (x!= posicao)
+    {
+        x++;
+        temp = temp->seguinte;
+    }
+    nodo_passageiro* temp1 = temp->seguinte;
+    delete temp;
+    return temp1;
+
 }
