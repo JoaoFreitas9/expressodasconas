@@ -76,6 +76,7 @@ node* pesquisar_no(node* raiz, int valor)
 	while (no != NULL) {
 		if (no->numero == valor) {
 			cout << "***Número de bilhete encontrado***";
+			return remover_no(raiz, no, antes);
 		}
 		else if (no->numero > valor) {
 			antes = no;
@@ -90,7 +91,7 @@ node* pesquisar_no(node* raiz, int valor)
 }
 
 node* remover_no(node* raiz, node* no, node* antes) {
-	node* temp = NULL;
+
 	if (antes == NULL) {
 		if (no->esquerda == NULL && no->direita == NULL) {
 			raiz == NULL;
@@ -103,17 +104,18 @@ node* remover_no(node* raiz, node* no, node* antes) {
 		}
 		else {
 			node* temp = no->esquerda;
+			antes = raiz;
 			while (temp->direita == NULL) {
 				antes = temp;
 				temp = temp->direita;
 			}
-		}
-		swap(temp->numero, no->numero);
-		if (antes->numero > no->numero || antes == raiz) {
-			antes->esquerda = temp->esquerda;
-		}
-		else {
-			antes->direita = temp->esquerda;
+			swap(temp->numero, no->numero);
+			if (antes->numero > no->numero || antes == raiz) {
+				antes->esquerda = temp->esquerda;
+			}
+			else {
+				antes->direita = temp->esquerda;
+			}
 		}
 	}
 	else {
@@ -148,13 +150,13 @@ node* remover_no(node* raiz, node* no, node* antes) {
 				antes = temp;
 				temp = temp->direita;
 			}
-		}
-		swap(temp->numero, no->numero);
-		if (antes->numero > no->numero || no == antes) {
-			antes->esquerda = no->esquerda;
-		}
-		else {
-			antes->direita = no->esquerda;
+			swap(temp->numero, no->numero);
+			if (antes->numero > no->numero || no == antes) {
+				antes->esquerda = no->esquerda;
+			}
+			else {
+				antes->direita = no->esquerda;
+			}
 		}
 	}
 	return raiz;
@@ -191,60 +193,3 @@ void infixa(node* raiz) {
 	cout << raiz->numero << " | ";
 	infixa(raiz->direita);
 }
-
-/*nodo_paragem* remove_bilhete(node* raiz, nodo_paragem* nome_da_paragem) {
-	string paragem;
-	string resultado = "";
-	int bilhete;
-	cout << "Qual é a paragem que deseja realizar a opção: ";
-	cin >> paragem;
-	nodo_paragem* temp = nome_da_paragem;
-	while (temp != NULL)
-	{
-		if (paragem == temp->nome_da_paragem) {
-			cout << "***Paragem encontrada***" << endl;
-			cout << "Introduza o número do bilhete que deseja retirar: ";
-			cin >> bilhete;
-			resultado = temp->nome_da_paragem;
-			raiz = temp->raiz;
-			pesquisar_no(raiz, bilhete);
-			remover_no(raiz, bilhete, )
-		}
-		temp = temp->seguinte;
-	}
-	if (resultado == "") {
-		cout << "***Paragem não encontrada***" << endl;
-	}
-}*/
-
-/*node* remover_bilhete(node* raiz, nodo_paragem* nome_da_paragem) {
-	node* no = raiz;
-	node* prev = NULL;
-	string paragem;
-	string resultado = "";
-	int bilhete;
-	cout << "Qual é a paragem que deseja realizar a opção: ";
-	cin >> paragem;
-	nodo_paragem* temp = nome_da_paragem;
-	while (temp != NULL)
-	{
-		if (paragem == temp->nome_da_paragem) {
-			cout << "***Paragem encontrada***" << endl;
-			cout << "Introduza o número do bilhete que deseja retirar: ";
-			cin >> bilhete;
-			resultado = temp->nome_da_paragem;
-			raiz = temp->raiz;
-			remover_no(raiz, no, prev);
-		}
-		else if (no->numero > bilhete) {
-			prev = no;
-			no = no->esquerda;
-		}
-		else {
-			prev = no;
-			no = no->direita;
-	}
-	
-	}
-	return raiz;
-}*/
