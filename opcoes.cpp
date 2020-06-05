@@ -65,16 +65,16 @@ void bilhete_por_arvore_binaria(nodo_autocarros* bus, nodo_paragem* paragens) {
 }
 
 nodo_paragem* remover_bilhete(nodo_paragem* nome_da_paragem) {
-   
+
     string paragem;
     string resultado = "";
     int verifica;
     int bilhete;
     cout << "Qual é a paragem que deseja realizar a opção: ";
     cin.ignore();
-    getline(cin,paragem);
+    getline(cin, paragem);
     nodo_paragem* temp = nome_da_paragem;
-   while (temp != NULL)
+    while (temp != NULL)
     {
         if (paragem == temp->nome_da_paragem) {
             cout << "***Paragem encontrada***" << endl;
@@ -86,9 +86,9 @@ nodo_paragem* remover_bilhete(nodo_paragem* nome_da_paragem) {
         }
         temp = temp->seguinte;
     }
-   if (resultado == "") {
-       cout << "***Paragem não encontrada***" << endl;
-   }
+    if (resultado == "") {
+        cout << "***Paragem não encontrada***" << endl;
+    }
     return nome_da_paragem;
 }
 
@@ -96,7 +96,7 @@ nodo_autocarros* alterar_motorista(nodo_autocarros* bus) {
     nodo_autocarros* temp = bus;
     string matricula;
     string nome_motorista;
-    string resultado="";
+    string resultado = "";
     cout << "Introduza a matrícula do autocarro que deseja alterar o motorista: ";
     cin >> matricula;
     while (temp != NULL) {
@@ -104,7 +104,7 @@ nodo_autocarros* alterar_motorista(nodo_autocarros* bus) {
             cout << "***Autocarro com matricula associada encontrado***" << endl;
             cout << "Qual o novo motorista que deseja introduzir: ";
             cin.ignore();
-            getline(cin,nome_motorista);
+            getline(cin, nome_motorista);
             temp->dados.condutor = nome_motorista;
             resultado = nome_motorista;
             temp = temp->seguinte;
@@ -119,14 +119,14 @@ nodo_autocarros* alterar_motorista(nodo_autocarros* bus) {
     return bus;
 }
 
-void remover_fila_espera(nodo_passageiro* lista_de_espera) {
+nodo_passageiro* remover_fila_espera(nodo_passageiro* lista_de_espera) {
     nodo_passageiro* temp = lista_de_espera;
     nodo_passageiro* temp1 = lista_de_espera;
     int bilhete;
     cout << "Indique o número do bilhete do passageiro a remover: ";
     cin >> bilhete;
     int i = 0;
-    int y=0;
+    int y = 0;
     while (temp != NULL) {
         if (temp->dados.n_bilhete != bilhete) {
             i = i + 1;
@@ -143,26 +143,27 @@ void remover_fila_espera(nodo_passageiro* lista_de_espera) {
         temp1 = temp1->seguinte;
     }
     if (y == i) {
-       
+
         if (i == 0) {
-            removeinicio(lista_de_espera);
+            lista_de_espera = removeinicio(lista_de_espera);
         }
         else if (i == x) {
-            removefim(lista_de_espera);
+            lista_de_espera = removefim(lista_de_espera);
         }
         else {
-            removeposicao(lista_de_espera, y);
+            lista_de_espera = removeposicao(lista_de_espera, y);
         }
     }
     else {
-        cout << "***O bilhete introduzido não existe***"<< endl;
+        cout << "***O bilhete introduzido não existe***" << endl;
     }
+    return lista_de_espera;
 }
 
 /*void remover_passageiro(nodo_autocarros* bus) {
     nodo_autocarros* temp = bus;
     nodo_autocarros* temp1 = bus;
-    
+
     int bilhete;
     string matricula;
     string resultado = "";
@@ -178,7 +179,7 @@ void remover_fila_espera(nodo_passageiro* lista_de_espera) {
             temp = temp->seguinte;
         }
     }
-    
+
     if (resultado != "") {
         cout << "Indique o número do bilhete do passageiro a remover: ";
         cin >> bilhete;
@@ -200,7 +201,6 @@ void remover_fila_espera(nodo_passageiro* lista_de_espera) {
             temp->dados.utilizadores = temp->dados.utilizadores->seguinte;
         }
         if (y == i) {
-
             if (i == 0) {
                 removeinicio(lista_de_espera);
             }
@@ -211,10 +211,10 @@ void remover_fila_espera(nodo_passageiro* lista_de_espera) {
                 removeposicao(lista_de_espera, y);
             }
         }
-  
+
     }
     else {
         cout << "***Autocarro com matricula associada não encontrado***" << endl;
     }
-    
+
 }*/
