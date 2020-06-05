@@ -10,14 +10,13 @@ void bilhete_crescente(nodo_paragem* paragens) {
     string paragem;
     string resultado = "";
     cout << "Qual é a paragem que deseja realizar a opção: ";
-    cin.ignore();
     getline(cin, paragem);
     nodo_paragem* temp = paragens;
     while (temp != NULL)
     {
         if (paragem == temp->nome_da_paragem) {
             cout << "***Paragem encontrada***" << endl;
-            resultado = temp->nome_da_paragem;
+            resultado = paragem;
         }
         temp = temp->seguinte;
     }
@@ -46,7 +45,7 @@ void bilhete_por_arvore_binaria(nodo_autocarros* bus, nodo_paragem* paragens) {
     {
         if (paragem == temp->nome_da_paragem) {
             cout << "***Paragem encontrada***" << endl;
-            resultado = temp->nome_da_paragem;
+            resultado = paragem;
         }
         temp = temp->seguinte;
     }
@@ -81,7 +80,7 @@ nodo_paragem* remover_bilhete(nodo_paragem* nome_da_paragem) {
             cout << "***Paragem encontrada***" << endl;
             cout << "Introduza o número do bilhete que deseja retirar: ";
             cin >> bilhete;
-            resultado = temp->nome_da_paragem;
+            resultado = paragem;
             temp->raiz = pesquisar_no(temp->raiz, bilhete);
             break;
         }
@@ -90,7 +89,6 @@ nodo_paragem* remover_bilhete(nodo_paragem* nome_da_paragem) {
    if (resultado == "") {
        cout << "***Paragem não encontrada***" << endl;
    }
-   
     return nome_da_paragem;
 }
 
@@ -125,7 +123,7 @@ void remover_fila_espera(nodo_passageiro* lista_de_espera) {
     int bilhete;
     cout << "Indique o número do bilhete do passageiro a remover: ";
     cin >> bilhete;
-    while (temp->dados.n_bilhete != NULL) {
+    while (temp!= NULL) {
         if (bilhete != temp->dados.n_bilhete) {
             temp = temp->seguinte;
         }
