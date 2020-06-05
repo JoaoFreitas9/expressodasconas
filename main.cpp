@@ -62,6 +62,7 @@ int main() {
 				{
 				case '1':
 					cout << "***Escolheu a opção Remover passageiros nos autocarros***" << endl;
+					remover_passageiro(lista_de_autocarros);
 					visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 					break;
 				case'2':
@@ -74,15 +75,18 @@ int main() {
 					char escolha;
 					while (!sair) {
 						sair = false;
+						cin.ignore();
 						cout << "Escolha a sua opção:" << endl;
 						cout << "(o)rdem crescente ou (a)rvore binária ou (v)oltar ";
 						std::cin >> escolha;
 						switch (escolha)
 						{
 						case 'o':
+							cin.ignore();
 							bilhete_crescente(lista_de_paragens);
 							break;
 						case 'a':
+							cin.ignore();
 							bilhete_por_arvore_binaria(lista_de_autocarros, lista_de_paragens);
 							break;
 						case 'v':
@@ -101,6 +105,9 @@ int main() {
 					break;
 				case '5':
 					cout << "***Escolheu a opção Remover Bilhete***" << endl;
+					lista_de_paragens = remover_bilhete(lista_de_paragens);
+					bilhete_por_arvore_binaria(lista_de_autocarros, lista_de_paragens);
+					system("pause");
 					visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 					break;
 				case'0':
