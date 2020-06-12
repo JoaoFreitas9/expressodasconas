@@ -89,7 +89,12 @@ int main() {
 						cout << endl;
 						escolha_paragem = qualaparagem(lista_de_paragens);
 						cout << endl;
-						bilhete_crescente(lista_de_paragens, escolha_paragem);
+						if (escolha_paragem == NULL) {
+							cout << "***Inseriu um caratere inválido***" << endl;
+						}
+						else {
+							bilhete_crescente(lista_de_paragens, escolha_paragem);
+						}
 						system("pause");
 						system("CLS");
 						visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
@@ -98,7 +103,12 @@ int main() {
 						cout << endl;
 						escolha_paragem = qualaparagem(lista_de_paragens);
 						cout << endl;
-						bilhete_por_arvore_binaria(lista_de_autocarros, lista_de_paragens, escolha_paragem);
+						if (escolha_paragem == NULL) {
+							cout << "***Inseriu um caratere inválido***" << endl;
+						}
+						else {
+							bilhete_por_arvore_binaria(lista_de_autocarros, lista_de_paragens, escolha_paragem);
+						}
 						system("pause");
 						system("CLS");
 						visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
@@ -121,8 +131,13 @@ int main() {
 					cout << endl;
 					cout << "***Escolheu a opção Remover Bilhete***" << endl;
 					escolha_paragem = qualaparagem(lista_de_paragens);
-					lista_de_paragens = remover_bilhete(lista_de_paragens, escolha_paragem, lista_de_autocarros);
-					bilhete_por_arvore_binaria(lista_de_autocarros, lista_de_paragens, escolha_paragem);
+					if (escolha_paragem == NULL) {
+						cout << "***Inseriu um caratere inválido***" << endl;
+					}
+					else {
+						lista_de_paragens = remover_bilhete(lista_de_paragens, escolha_paragem, lista_de_autocarros);
+						bilhete_por_arvore_binaria(lista_de_autocarros, lista_de_paragens, escolha_paragem);
+					}
 					system("pause");
 					system("CLS");
 					visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
