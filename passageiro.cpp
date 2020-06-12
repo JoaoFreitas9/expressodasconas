@@ -227,9 +227,9 @@ nodo_passageiro* removeinicio(nodo_passageiro* head) {
         return NULL;
     }
     else {
-        nodo_passageiro* temp = head->seguinte;
-        delete head;
-        return temp;
+        temp = temp->seguinte;
+        head = temp;
+        return head;
     }
 }
 nodo_passageiro* removefim(nodo_passageiro* head) {
@@ -243,14 +243,52 @@ nodo_passageiro* removefim(nodo_passageiro* head) {
 }
 nodo_passageiro* removeposicao(nodo_passageiro* head, int posicao) {
     nodo_passageiro* temp = head;
+    nodo_passageiro* temp1 = head;
     int x = 0;
-    while (x!= posicao)
-    {
+    while (x != (posicao - 1)) {
+        temp = temp->seguinte;
+        temp1 = temp1->seguinte;
         x++;
+    }
+    temp1 = temp1->seguinte->seguinte;
+    delete temp->seguinte;
+    temp->seguinte = temp1;
+
+    return head;
+}
+nodo_autocarros* removeposicao_passageiro(nodo_autocarros* head, int posicao) {
+    nodo_autocarros* temp = head;
+    nodo_autocarros* temp1 = head;
+    int x = 0;
+    while (x != (posicao - 1)) {
+        temp = temp->seguinte;
+        temp1 = temp1->seguinte;
+        x++;
+    }
+    temp1 = temp1->seguinte->seguinte;
+    delete temp->seguinte;
+    temp->seguinte = temp1;
+
+    return head;
+}
+nodo_autocarros* removeinicio_passageiro(nodo_autocarros* head) {
+    nodo_autocarros* temp = head;
+    if (head == NULL) {
+        cout << "Lista vazia";
+        return NULL;
+    }
+    else {
+        temp = temp->seguinte;
+        head = temp;
+        return head;
+    }
+}
+nodo_autocarros* removefim_passageiro(nodo_autocarros* head) {
+    nodo_autocarros* temp = head;
+    while (temp->seguinte->seguinte != NULL) {
         temp = temp->seguinte;
     }
-    nodo_passageiro* temp1 = temp->seguinte;
-    delete temp;
-    return temp1;
-
+    delete temp->seguinte;
+    temp->seguinte = NULL;
+    return head;
 }
