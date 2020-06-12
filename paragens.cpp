@@ -12,6 +12,7 @@ nodo_paragem* insereInicio_paragem(nodo_paragem* inicio, nodo_paragem* novo) {
 	return inicio;
 }
 
+
 nodo_paragem* gera_paragens(string* paragens_nomes, int n_paragens) {
 	nodo_paragem* resultado = NULL;
 	int i = 0;
@@ -86,6 +87,9 @@ node* pesquisar_no(node* raiz, int valor)
 			antes = no;
 			no = no->direita;
 		}
+	}
+	if (no == NULL) {
+		cout << "***Número de bilhete não encontrado***";
 	}
 	return raiz;
 }
@@ -192,4 +196,39 @@ void infixa(node* raiz) {
 	infixa(raiz->esquerda);
 	cout << raiz->numero << " | ";
 	infixa(raiz->direita);
+}
+nodo_paragem* insereInicio_paragem2(nodo_paragem* inicio, nodo_paragem* novo) {
+	inicio = novo;
+	return inicio;
+}
+
+nodo_paragem* qualaparagem(nodo_paragem* lista_de_paragens) 
+{
+	nodo_paragem* temp = lista_de_paragens;
+	char x = 'a';
+	char escolha;
+	int verificacao = 0;
+	nodo_paragem* paragem = NULL;
+	cout << "Indique a paragem desejada: "<< endl;
+	while (temp!=NULL)
+	{
+		cout << "[" << x << "] " << temp->nome_da_paragem << endl;
+		temp = temp->seguinte;
+		x = x + 1;
+	}
+	cin >> escolha;
+	nodo_paragem* temp1 = lista_de_paragens;
+	char w = 'a';
+	while (temp1 != NULL) {
+		if (escolha == w) {
+			verificacao = 1;
+			break;
+		}
+		else {
+			w = w + 1;
+			temp1 = temp1->seguinte;
+		}
+	}
+
+	return temp1;
 }
