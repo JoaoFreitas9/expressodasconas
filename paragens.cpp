@@ -234,8 +234,5 @@ nodo_paragem* qualaparagem(nodo_paragem* lista_de_paragens)
 			temp1 = temp1->seguinte;
 		}
 	}
-	if (verificacao == 0) {
-		cout << "***Inseriu um caratere inválido***"<< endl;
-	}
 	return temp1;
 }
