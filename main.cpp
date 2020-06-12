@@ -7,14 +7,14 @@ using namespace std;
 #include "passageiro.h"
 #include "paragens.h"
 #include "interacaopp.h"
-#include "opcoes.h"
+#include "opçoes.h"
 
 int main() {
 	srand(time(NULL));
 	locale::global(locale(""));
-	string* primeiro_nomes = leprimeironome("C:/Users/joaof/Desktop/primeiro_nome.txt");
-	string* ultimo_nomes = leultimonome("C:/Users/joaof/Desktop/ultimo_nome.txt");
-	string* paragens_nomes = leparagens("C:/Users/joaof/Desktop/paragens.txt");
+	string* primeiro_nomes = leprimeironome("C:/Users/Dany/Desktop/PROJETO EDA EXPRESSO/primeiro_nome.txt");
+	string* ultimo_nomes = leultimonome("C:/Users/Dany/Desktop/PROJETO EDA EXPRESSO/ultimo_nome.txt");
+	string* paragens_nomes = leparagens("C:/Users/Dany/Desktop/PROJETO EDA EXPRESSO/paragens.txt");
 	int* n_bilhetes = gera_lista_bilhetes();
 	int n_paragens = rand() % 5 + 6;
 	char matricula[36] = { '0','1','2','3','4','5','6','7','8','9', 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
@@ -62,28 +62,46 @@ int main() {
 				switch (selecao)
 				{
 				case '1':
+					cout << endl;
 					cout << "***Escolheu a opção Remover passageiros nos autocarros***" << endl;
 					lista_de_autocarros = remover_passageiro(lista_de_autocarros);
+					system("pause");
+					system("CLS");
 					visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 					break;
 				case'2':
+					cout << endl;
 					cout << "***Escolheu a opção Remover Passageiros em Fila de Espera***" << endl;
 					lista_de_espera = remover_fila_espera(lista_de_espera);
+					system("pause");
+					system("CLS");
 					visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 					break;
 				case '3':
+					cout << endl;
 					cout << "***Escolheu a opção Apresentar Bilhetes por Paragem***" << endl;
 					char escolha;
+					cout << endl;
 					cout << "Escolha a sua opção:" << endl;
 					cout << "(o)rdem crescente ou (a)rvore binária ou (v)oltar ";
 					std::cin >> escolha;
 					if (escolha == 'o') {
+						cout << endl;
 						escolha_paragem = qualaparagem(lista_de_paragens);
+						cout << endl;
 						bilhete_crescente(lista_de_paragens, escolha_paragem);
+						system("pause");
+						system("CLS");
+						visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 					}
 					else if (escolha == 'a') {
+						cout << endl;
 						escolha_paragem = qualaparagem(lista_de_paragens);
+						cout << endl;
 						bilhete_por_arvore_binaria(lista_de_autocarros, lista_de_paragens, escolha_paragem);
+						system("pause");
+						system("CLS");
+						visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 					}
 					else if (escolha == 'v') {
 						break;
@@ -93,19 +111,24 @@ int main() {
 					}
 					break;
 				case'4':
+					cout << endl;
 					cout << "***Escolheu a opção Alterar Motorista***" << endl;
 					alterar_motorista(lista_de_autocarros);
+					system("CLS");
 					visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 					break;
 				case '5':
+					cout << endl;
 					cout << "***Escolheu a opção Remover Bilhete***" << endl;
 					escolha_paragem = qualaparagem(lista_de_paragens);
 					lista_de_paragens = remover_bilhete(lista_de_paragens, escolha_paragem, lista_de_autocarros);
 					bilhete_por_arvore_binaria(lista_de_autocarros, lista_de_paragens, escolha_paragem);
 					system("pause");
+					system("CLS");
 					visualizacao(lista_de_espera, lista_de_paragens, lista_de_autocarros);
 					break;
 				case'0':
+					cout << endl;
 					cout << "***Escolheu a opção de voltar***" << endl;
 					voltar = true;
 					break;
@@ -113,7 +136,9 @@ int main() {
 			}
 			break;
 		default:
-			cout << "Inseriu um caratere inválido. Prima ENTER para voltar " << endl;
+			cout << "***Inseriu um caratere inválido***" << endl;
+			system("pause");
+
 			break;
 		}
 	}
