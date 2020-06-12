@@ -23,8 +23,9 @@ node* inserir_no(node* raiz, int valor);
 void imprimeArvore(node* raiz, int nivel);
 node* pesquisar_no(node* raiz, int valor);
 node* remover_no(node* raiz, node* no, node* antes);
-node* remover_bilhete(node* raiz, nodo_paragem* nome_da_paragem);
 void insere_valor_posicao_paragem(nodo_paragem* lista_de_paragens, int posicao, int valor_n_bilhete);
 int altura(node* raiz);
 void infixa(node* raiz);
+nodo_paragem* qualaparagem(nodo_paragem* lista_de_paragens);
+nodo_paragem* insereInicio_paragem2(nodo_paragem* inicio, nodo_paragem* novo);
 #endif
