@@ -49,4 +49,7 @@ autocarro gera_autocarro(string* primeiro_nome, string* ultimo_nome, nodo_passag
 nodo_passageiro* insereInicio(nodo_passageiro* inicio, passageiro valor);
 nodo_passageiro* removeinicio(nodo_passageiro* head);
 nodo_passageiro* removeposicao(nodo_passageiro* head, int posicao);
+nodo_autocarros* removeposicao_passageiro(nodo_autocarros* head, int posicao);
+nodo_autocarros* removeinicio_passageiro(nodo_autocarros* head);
+nodo_autocarros* removefim_passageiro(nodo_autocarros* head);
 #endif
